@@ -21,10 +21,10 @@ jobs:
         uses: actions/checkout@v6
         with:
           persist-credentials: false
-      - name: Stage the static page
+      - name: Stage the static pages
         run: |
           mkdir -p _site
-          cp index.html _site/index.html
+          cp index.html marry.html _site/
       - name: Upload the Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
