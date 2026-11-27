@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12.23–12.25 婚礼筹备清单</title>
+<style>
+*{box-sizing:border-box;font-family:system-ui, sans-serif;margin:0;padding:0}
+body{background:#f8f5f2;color:#333;padding:16px;max-width:900px;margin:0 auto}
+h1{text-align:center;color:#b82222;margin-bottom:16px;font-size:22px}
+.info{background:#fff0f0;border:1px solid #f2c8c8;padding:12px;border-radius:8px;margin-bottom:16px;line-height:1.6}
+.itinerary-day{border-top:1px solid #edc8c8;margin-top:12px;padding-top:9px}
+.itinerary-day h2{color:#922121;font-size:16px;margin-bottom:6px}
+.time-slots{display:grid;grid-template-columns:8.25rem minmax(0,1fr);gap:5px 12px;font-size:15px}
+.time-slots dt{font-weight:700;color:#922121;font-variant-numeric:tabular-nums}
+@media(max-width:440px){
+  .time-slots{grid-template-columns:minmax(0,1fr);row-gap:0}
+  .time-slots dd{margin-bottom:6px}
+}
+.section{background:#fff;border-radius:10px;padding:14px;margin-bottom:12px;box-shadow:0 1px 4px #00000015}
+.section-title{font-size:17px;font-weight:bold;color:#b82222;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.item{display:flex;gap:8px;align-items:flex-start;padding:6px 0}
+input[type=checkbox]{margin-top:4px;width:18px;height:18px;accent-color:#b82222}
+.item-text{flex:1;font-size:15px;line-height:1.5}
+.remark{color:#777;font-size:13px}
+.ctrl{margin:16px 0;text-align:center}
+button{padding:8px 14px;border:none;border-radius:6px;background:#b82222;color:#fff;font-size:14px;cursor:pointer;margin:0 4px}
+button:hover{background:#991b1b}
+.progress{font-size:14px;color:#555;margin-bottom:8px}
+</style>
+</head>
+<body>
+<h1>12.23–12.25 婚礼筹备清单</h1>
+<div class="info">
+<strong>场地：</strong>兴国均村乡东方村街上 吴记家宴<br>
+<strong>新娘出嫁：</strong>县城希尔顿酒店<br>
+<strong>桌数：</strong>15桌（正席13桌 + 备用2桌，备用含在15桌内）
+<section class="itinerary-day">
+<h2>12月23日 · 夜间接亲</h2>
+<dl class="time-slots">
+<dt>发车前40分钟</dt>
+<dd>接亲车队在新郎家集合。</dd>
+<dt>21:00–23:00</dt>
+<dd>建议21:00左右发车，从新郎家去县城希尔顿酒店接新娘，再返回新郎家。单程约35公里、50分钟。</dd>
+<dt>23:00前</dt>
+<dd>属羊的岳父按婚俗避开生肖相冲，回希尔顿酒店房间闭门休息。</dd>
+<dt>23:00–次日01:00</dt>
+<dd><strong>进门吉时。</strong>新娘在23日23:00至24日01:00之间进新郎家。</dd>
+<dt>进门后</dt>
+<dd>新娘在新郎家休息。</dd>
+</dl>
+</section>
+
+<section class="itinerary-day">
+<h2>12月24日 · 化妆、午宴、喝茶</h2>
+<dl class="time-slots">
+<dt>07:30</dt>
+<dd>新郎和仕崟各开一辆车，从新郎家送新娘去县城沃尔顿酒店（将军园店）。</dd>
+<dt>抵店后至10:00前</dt>
+<dd>新娘在沃尔顿化妆，在酒店吃早餐。</dd>
+<dt>10:00</dt>
+<dd>从沃尔顿出发前往吴记家宴。</dd>
+<dt>中午</dt>
+<dd>在吴记家宴2楼吃午宴。</dd>
+<dt>下午</dt>
+<dd>午宴后，大家回新郎家喝茶。</dd>
+</dl>
+</section>
+
+<section class="itinerary-day">
+<h2>12月25日 · 返程</h2>
+<dl class="time-slots">
+<dt>上午</dt>
+<dd>吃早餐。</dd>
+<dt>早餐后</dt>
+<dd>岳父、岳母和姐姐返回汕尾。</dd>
+</dl>
+</section>
+</div>
+<div class="progress">总进度：<span id="progress">0/145</span></div>
+<div class="ctrl">
+<button onclick="saveData()">保存</button>
+<button onclick="loadData()">读取</button>
+<button onclick="if(confirm('确定清空全部勾选？')){clearAll();}">清空全部勾选</button>
+</div>
+
+<div class="section">
+<div class="section-title">1.烟酒零食 <span class="progress" data-count="7">0/7</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">白酒 18瓶｜13桌正席每桌1瓶，备用桌开一桌补1瓶，另3瓶机动</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">香烟 5条（50包）｜15桌每桌2包共30包，剩余20包用于敬烟、司机、帮忙亲友</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">饮料 36瓶｜15桌每桌2瓶共30瓶，额外备6瓶</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">矿泉水 45～60瓶（2箱）｜供宾客、司机、化妆师、迎宾处</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">喜糖包 160包｜按13桌×10人×1.2倍准备，多留发小孩、未到场亲友</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">瓜子花生 17份｜15桌每桌一盘，另备2份</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">水果 15盘（可选）｜橘子、苹果，优先好剥的品类</div></div>
+</div>
+
+<div class="section">
+<div class="section-title">2.红包类 <span class="progress" data-count="5">0/5</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">司机红包（婚车）｜按2台车准备，额外备1个备用红包</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">伴郎、伴娘红包</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">帮忙亲友红包｜总管、记账、物资管理员、老家看家人员</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">化妆师红包｜现金或搭配喜烟</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">改口敬茶红包｜新人给双方父母，父母各1对</div></div>
+</div>
+
+<div class="section">
+<div class="section-title">3.仪式用品 <span class="progress" data-count="4">0/4</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">敬茶杯2个 + 托盘｜老家敬茶使用，老家准备一套即可</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">胸花：新郎、新娘、双方父母、伴郎伴娘、总管</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">喜字｜出嫁房、婚房、吴记一楼门口+二楼入口、老家门头，楼梯口重点贴</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">签到本、签到笔｜吴记迎宾台使用</div></div>
+</div>
+
+<div class="section">
+<div class="section-title">4.记账收礼用品 <span class="progress" data-count="4">0/4</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">礼簿（记账本）｜备2本，防止写满</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">黑色签字笔 2支</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">现金收纳小包｜贴身、带锁优先，存放礼金</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">零钱备用金｜用于临时换零、包红包</div></div>
+</div>
+
+<div class="section">
+<div class="section-title">5.新人自用 <span class="progress" data-count="5">0/5</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">新郎礼服、衬衫、皮带、婚鞋、袜子</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">婚纱/秀禾、婚鞋、头纱、首饰（项链手镯耳环）</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">备用发夹、橡皮筋、双面胶、别针｜礼服、头纱应急固定</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">充电宝、手机充电器</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">纸巾、湿巾、补妆用品</div></div>
+</div>
+
+<div class="section">
+<div class="section-title">6.县城希尔顿 · 出嫁房布置 <span class="progress" data-count="14">0/14</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">提前和酒店确认：房间号、房间数量、入住退房时间，预留伴娘及女方家人所需房间</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">确认酒店允许布置范围，优先无痕胶/静电贴，避免扣押金</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">确认接亲房门卡及岳父房间门卡。23日23:00前，岳父回自己的房间闭门休息</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">红色床品：床单、被套、枕套</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">床头双喜、窗贴、门贴喜字（静电贴/无痕胶）</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">气球、拉花、花艺装饰</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">24日化妆和早餐安排在县城沃尔顿酒店（将军园店），确认化妆房间、化妆师到场时间和早餐供应时段</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">敬茶位：桌子、红布、茶杯、托盘</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">干果盘：红枣、花生、桂圆、莲子</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">房间摆放喜糖、矿泉水、纸巾</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">门口迎亲：红地毯/喜字牌，走廊小段布置</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">行李箱、婚纱袋规划收纳位置，避开镜头</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">23日晚接亲前完成出嫁房布置，拍照留存，方便查漏</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">退房前清点装饰、首饰、充电器，防止遗漏</div></div>
+</div>
+
+<div class="section">
+<div class="section-title">7.吴记家宴 · 现场布置 <span class="progress" data-count="23">0/23</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">和酒店确认进场布置时间、可布置区域、撤场时间，提前看场地</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">15桌排位：13正席+2备用，确定主桌位置</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">确认备用桌规则：是否上菜、开桌费用，避免额外加价</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">席次规划：主桌、女方送亲桌、亲友桌、朋友桌，女方送亲安排上首</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">二楼入口指示牌，安排人员一楼引导上楼</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">楼梯口喜字、扶手红绸/气球</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">老人小孩上楼看护提醒，注意台阶湿滑</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">迎宾指示牌，街上显眼摆放</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">签到台布置：礼簿、笔、喜糖、托盘，放在进门显眼位置</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">门口喜字、气球、拱门（可选）、红绸</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">确认每桌喜糖、瓜子花生、烟酒饮料由谁摆放</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">桌卡/席位卡（可选）</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">敬酒小酒杯、托盘，提前向酒店确认是否自备</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">音响、麦克风，提前试音，准备敬酒背景音乐</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">规划敬酒路线，从主桌依次走，减少折返</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">规划烟酒喜糖搬运上楼人员和时间，避开开席高峰</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">确认二楼洗手间、纸巾、垃圾桶位置</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">空调/通风调节，12月兼顾保暖和不闷</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">合影点位、灯光安排，开席前集中拍照</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">确认24日午宴开席时间，衔接10:00从沃尔顿出发的安排</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">结算事项：尾款、开瓶费、加桌费用，提前沟通清楚</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">散席清点剩余烟酒喜糖，指定专人收回</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">24日午宴结束后，大家下午回新郎家喝茶</div></div>
+</div>
+
+<div class="section">
+<div class="section-title">8.农村老家 · 婚房布置 <span class="progress" data-count="15">0/15</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">提前铺好红色喜被、床单和枕套，供新娘夜间进门后休息</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">床面摆放双喜摆件</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">床头花艺、气球、拉花，避开灯具插座</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">枣生桂子干果盘</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">床头暖光喜灯，方便拍照</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">窗户喜字、窗帘拉花</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">梳妆台、镜子、红色睡衣、红拖鞋</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">成对新牙刷、杯子、毛巾（红/粉色套装）</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">衣柜抽屉预留一半空间给新娘物品</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">清理地面、床底杂物，避免入镜杂乱</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">检查取暖/空调，山区12月底很冷，提前试机</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">插座、插排、充电点位准备</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">房间提前通风除味</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">敬茶用品：桌子、红布、茶杯、托盘</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">门口/堂屋合影位，优先光线好的位置</div></div>
+</div>
+
+<div class="section">
+<div class="section-title">9.农村老家 · 院子布置 <span class="progress" data-count="13">0/13</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">门头：喜字、横批、红绸、双喜</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">院子彩旗、气球、红灯笼，不影响通行和车辆</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">院门到屋门红地毯（可选）</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">规划婚车抵达后的停车位置，院内不够就安排街边空地</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">门口音响（可选），车队抵达时播放音乐</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">清扫院子，农具、肥料杂物全部移走</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">备桌椅，给长辈、司机、帮忙人员休息</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">24日下午回新郎家喝茶，茶水台备好开水、茶叶和一次性杯子</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">音响/锣鼓二选一，音量控制，不扰民</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">防雨雾备用方案，保护红地毯、音响</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">电线插排检查，杜绝私拉乱接</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">卫生间备好纸巾、热水、干净毛巾</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">垃圾袋、扫帚簸箕就近摆放，及时清理垃圾</div></div>
+</div>
+
+<div class="section">
+<div class="section-title">10.农村老家 · 一楼/二楼/三楼 <span class="progress" data-count="14">0/14</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">一楼堂屋清空，预留敬茶、合影区域</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">一楼招待区，摆放茶水、瓜子、喜糖</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">一楼设置礼品烟酒临时存放点，专人看管</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">楼梯扶手缠绕红绸/气球</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">每层楼梯口贴喜字</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">二楼作为亲友休息、拍照区域，老人优先一楼</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">二楼预留新娘换装补妆房间，镜子+插排备好</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">三楼客房：床品、枕头、被子、拖鞋、洗漱用品</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">三楼储物间清理、关门，避免宾客误进</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">全楼层灯光检修，更换坏灯泡，走廊楼梯必须明亮</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">测试各楼层插座和插排是否可用</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">楼梯阳台安全检查，防滑，看护小孩</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">易碎摆件、花瓶提前收纳</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">清扫地面、擦净窗户，保证拍照背景干净</div></div>
+</div>
+
+<div class="section">
+<div class="section-title">11.婚车 · 车队 <span class="progress" data-count="17">0/17</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text"><strong>23日晚接亲车队：一共2台</strong><br>1、第一台：深圳西站神州租车，外聘司机驾驶，新郎坐副驾，新娘坐后座右侧<br>2、第二台：仕崟开自有比亚迪汉电车，搭载岳母、姐姐。岳父23:00前回希尔顿房间闭门休息</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">23日晚接亲和24日上午送新娘化妆均安排2台车。24日上午由新郎和仕崟各开一台</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">车辆装饰：头车车头花、拉花、车牌喜字；比亚迪汉车门拉花、后视镜红绸</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">司机信息表：姓名、电话、车牌，发总管和司机群</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">23日晚车队在新郎家集合，比计划发车时间提前40分钟，按21:00左右发车</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">23日晚接亲踩点：新郎家 ↔ 县城希尔顿酒店，单程约35公里、50分钟。结合夜间路况安排返程，确保23日23:00至24日01:00进门</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">24日路线踩点：新郎家 → 县城沃尔顿酒店（将军园店）→ 吴记家宴 → 新郎家</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">精准导航定位发给每位司机，乡里定位容易偏差</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">车队顺序固定，头车在前，乡道不随意超车</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">停车规划：希尔顿酒店、沃尔顿酒店（将军园店）、新郎家院子、吴记门口空地，确认停车费由谁承担</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">23日晚集合时发矿泉水。24日早上到沃尔顿吃早餐</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">司机待遇统一标准：红包+喜烟，仕崟同样安排</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">预留亲友私家车作为故障备用车</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">车辆提前清洗；比亚迪汉提前充满电，租车车辆检查油量</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">大雾、雨天预案：预留夜间行车时间，结合路况动态确认返程和进门时间</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">按23日晚接亲座位安排入座，出发前确认24日上午两台车的乘员</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">24日07:30从新郎家出发去沃尔顿化妆、吃早餐，10:00从沃尔顿出发去吴记家宴，午宴后回新郎家喝茶</div></div>
+</div>
+
+<div class="section">
+<div class="section-title">12.开车的人（司机） <span class="progress" data-count="10">0/10</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">司机名单表：姓名、电话、车牌，发给总管、婚车负责人</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">硬性要求：所有司机全程不喝酒</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">23日晚接亲由外聘司机和仕崟开车，仕崟按帮忙安排红包和喜烟。24日上午由新郎和仕崟开车</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">提前建立司机群，下发集合时间、路线、停车点位</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">出发前10分钟电话逐一确认到位</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">跟车司机跟紧头车，乡道岔路多，防止掉队</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">23日晚接亲司机的矿泉水在集合时发放，红包和喜烟在接亲结束后发放</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">备用司机1名，持有驾照亲友，应对临时缺席</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">司机不参与闹场，全程保持清醒</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">收尾：神州车辆按平台流程归还；仕崟车辆自行收尾</div></div>
+</div>
+
+<div class="section">
+<div class="section-title">13.租车事项 <span class="progress" data-count="14">0/14</span></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">仅第一台车租赁，深圳西站神州网点；比亚迪汉是仕崟自有车，不用租</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">12月上旬预约下单，年底租车紧张，线上下单留存截图</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">订单写明网点、车型和租期，覆盖23日晚接亲。如24日新郎继续开租车，确认租期覆盖24日行程，并确认外聘司机和新郎均可登记驾驶</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">确认保险方案、平台驾驶人登记规则，以及实际驾驶人是否在保障范围内</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">用车时长、超时计费标准</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">公里限制、超公里单价，乡镇路程容易超里程</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">押金、尾款支付方式和时间</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">事故责任划分，分清平台、聘请司机责任</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">违章押金退还周期</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">取还车时间、地点（深圳西站网点）</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">取车验车拍照：车身、轮胎、油量、内饰，留存照片</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">订单改期、取消规则</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">神州平台应急救援电话保存</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">添加外聘司机微信，当面确认时间地点</div></div>
+</div>
+
+<script>
+const chks = document.querySelectorAll('.chk');
+const total = chks.length;
+function updateProgress(){
+  const done = document.querySelectorAll('.chk:checked').length;
+  document.getElementById('progress').innerText = done + '/' + total;
+  document.querySelectorAll('.section').forEach(sec=>{
+    const cnt = sec.querySelector('[data-count]');
+    if(!cnt) return;
+    const all = sec.querySelectorAll('.chk').length;
+    const ok = sec.querySelectorAll('.chk:checked').length;
+    cnt.innerText = ok + '/' + all;
+  })
+}
+chks.forEach(c=>c.onchange=updateProgress);
+function saveData(){
+  const arr = Array.from(chks).map(c=>c.checked);
+  localStorage.setItem('weddingCheck', JSON.stringify(arr));
+  alert('已保存到本地浏览器');
+}
+function loadData(){
+  const s = localStorage.getItem('weddingCheck');
+  if(!s) return alert('暂无保存记录');
+  const arr = JSON.parse(s);
+  // 旧版有 146 项，读取时跳过已删除的婚车座位安排。
+  const savedChecks = arr.length === 146 ? arr.filter((_, i) => i !== 113) : arr;
+  chks.forEach((c,i)=>c.checked = savedChecks[i]);
+  updateProgress();
+  alert('读取完成');
+}
+function clearAll(){
+  chks.forEach(c=>c.checked=false);
+  updateProgress();
+  localStorage.removeItem('weddingCheck');
+}
+updateProgress();
+</script>
+</body>
+</html>
