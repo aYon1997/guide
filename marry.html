@@ -6,7 +6,7 @@
 <title>12.22–12.25 婚礼筹备清单</title>
 <style>
 *{box-sizing:border-box;font-family:system-ui, sans-serif;margin:0;padding:0}
-body{background:#f8f5f2;color:#333;padding:16px;max-width:900px;margin:0 auto}
+body{background:#f8f5f2;color:#333;padding:16px 16px calc(72px + env(safe-area-inset-bottom,0px));max-width:900px;margin:0 auto}
 h1{text-align:center;color:#b82222;margin-bottom:16px;font-size:22px}
 .info{background:#fff0f0;border:1px solid #f2c8c8;padding:12px;border-radius:8px;margin-bottom:16px;line-height:1.6}
 .itinerary-day{border-top:1px solid #edc8c8;margin-top:12px;padding-top:9px}
@@ -38,18 +38,52 @@ button:hover{background:#991b1b}
 .toc li a,.back-to-contents{font-size:14px}
 .chapter-header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:18px 0 8px}
 .back-to-contents{flex-shrink:0}
-.chapter-title,.subsection-title,#contents{scroll-margin-top:12px}
+.chapter-title,.subsection-title,#contents{scroll-margin-top:68px}
 .chapter-title:target,.subsection-title:target{background:#ffe9e9;outline:2px solid #edc8c8;outline-offset:3px;border-radius:3px}
 @media(max-width:380px){.toc-grid{grid-template-columns:1fr}}
 .toc-pending{grid-column:1/-1}
 .toc-pending ul{display:flex;flex-wrap:wrap;column-gap:16px}
 .pending-list{padding-left:1.2em;font-size:15px;line-height:1.6}
 .pending-list li+li{margin-top:4px}
+.page-search{position:sticky;top:8px;z-index:5;display:grid;grid-template-columns:minmax(0,1fr) auto auto auto auto;gap:4px;align-items:center;padding:6px 8px;margin-bottom:14px;background:#fff;border:1px solid #edc8c8;border-radius:10px;box-shadow:0 2px 8px #00000015}
+.page-search input{width:100%;min-width:0;height:38px;padding:0 8px;border:1px solid #e8d4d4;border-radius:6px;background:#fffafa;color:#333;font-size:16px}
+.page-search input::-webkit-search-cancel-button{display:none}
+.page-search output{min-width:3.5em;font-size:14px;text-align:center;color:#666;font-variant-numeric:tabular-nums}
+.page-search button{width:36px;height:36px;margin:0;padding:0;background:#fbeeed;color:#8e2020;font-size:19px;line-height:1}
+.page-search button:not(:disabled):hover{background:#f7dada}
+.page-search button:disabled{opacity:.4;cursor:default}
+.page-search :focus-visible{outline:2px solid #b82222;outline-offset:2px}
+.search-hit{background:#fff0a6;color:inherit}
+.search-hit-current{background:#ffbd70;outline:1px solid #b76716}
+.day-view{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.day-view button{min-height:36px;margin:0;padding:6px 9px;border:1px solid #edc8c8;background:#fff;color:#8e2020}
+.day-view button:hover{background:#fff0f0}
+.day-view button[aria-pressed="true"]{background:#b82222;border-color:#b82222;color:#fff}
+.day-view button:focus-visible{outline:2px solid #b82222;outline-offset:2px}
+[data-full-view][hidden],.itinerary-day[hidden]{display:none}
+#page-top{scroll-margin-top:16px}
+.back-to-top{position:fixed;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:6;display:grid;place-items:center;width:44px;height:44px;border:1px solid #9d1515;border-radius:50%;background:#b82222;color:#fff;font-size:23px;line-height:1;text-decoration:none;box-shadow:0 3px 10px #00000030}
+.back-to-top:hover{background:#991b1b}
+.back-to-top:focus-visible{outline:2px solid #8e2020;outline-offset:3px}
 </style>
 </head>
 <body>
-<h1>12.22–12.25 婚礼筹备清单</h1>
-<nav class="toc" id="contents" aria-labelledby="contents-title">
+<h1 id="page-top" tabindex="-1">12.22–12.25 婚礼筹备清单</h1>
+<div class="page-search" role="search" aria-label="查找清单内容">
+  <input id="page-search-input" type="search" aria-label="搜索关键词" placeholder="搜索关键词" autocomplete="off">
+  <output id="page-search-count" for="page-search-input" aria-label="搜索结果" aria-live="polite"></output>
+  <button id="page-search-previous" type="button" aria-label="上一处匹配" title="上一处（Shift+Enter）" disabled>↑</button>
+  <button id="page-search-next" type="button" aria-label="下一处匹配" title="下一处（Enter）" disabled>↓</button>
+  <button id="page-search-clear" type="button" aria-label="清除搜索" title="清除搜索（Esc）" disabled>×</button>
+</div>
+<div class="day-view" role="group" aria-label="按日期查看行程">
+  <button type="button" data-day="" aria-pressed="true">全部</button>
+  <button type="button" data-day="dec-22" aria-label="12月22日" aria-pressed="false">22日</button>
+  <button type="button" data-day="dec-23" aria-label="12月23日" aria-pressed="false">23日</button>
+  <button type="button" data-day="dec-24" aria-label="12月24日" aria-pressed="false">24日</button>
+  <button type="button" data-day="dec-25" aria-label="12月25日" aria-pressed="false">25日</button>
+</div>
+<nav class="toc" id="contents" aria-labelledby="contents-title" data-full-view>
 <h2 id="contents-title">目录</h2>
 <div class="toc-grid">
 <div class="toc-chapter">
@@ -101,14 +135,17 @@ button:hover{background:#991b1b}
 </div>
 </div>
 </nav>
-<div class="chapter-header">
+<main id="wedding-content">
+<div class="chapter-header" data-full-view>
 <h2 class="chapter-title" id="itinerary" tabindex="-1">第一章　四天行程</h2>
 <a class="back-to-contents" href="#contents">返回目录</a>
 </div>
 <div class="info">
-<strong>午宴场地：</strong>兴国县均村乡街上，吴记家宴2楼<br>
-<strong>新娘出嫁：</strong>县城沃尔顿酒店（将军园店）<br>
-<strong>桌数：</strong>13桌（正席12桌 + 备用1桌）
+<div data-full-view>
+<p><strong>午宴场地：</strong>兴国县均村乡街上，吴记家宴2楼</p>
+<p><strong>新娘出嫁：</strong>县城沃尔顿酒店（将军园店）</p>
+<p><strong>桌数：</strong>13桌（正席12桌 + 备用1桌）</p>
+</div>
 <section class="itinerary-day">
 <h3 class="subsection-title" id="dec-22" tabindex="-1">1.1 12月22日 · 酒店订房</h3>
 <dl class="time-slots">
@@ -133,7 +170,7 @@ button:hover{background:#991b1b}
 <dt>21:00</dt>
 <dd>两辆车在沃尔顿酒店（将军园店）门口汇合并停车。贴纸已买好，贴纸和贴法都找新郎。两辆车都用无痕胶贴车贴，约需10分钟。</dd>
 <dt>约21:10–21:30</dt>
-<dd>贴好车贴后，车队从沃尔顿出发，送新娘回新郎家。新娘父母和姐姐当晚在沃尔顿酒店休息。车队预计22:00–22:20抵达新郎家附近，在地面停车场等吉时，23:00起按吉时进门。</dd>
+<dd>贴好车贴后，车队从沃尔顿出发，送新娘回新郎家。新娘父母当晚在沃尔顿酒店休息。车队预计22:00–22:20抵达新郎家附近，在地面停车场等吉时，23:00起按吉时进门。</dd>
 <dt>23:00前</dt>
 <dd>新娘父亲属马，按婚俗避开生肖相冲，回沃尔顿酒店（将军园店）已订的豪华套房闭门休息。</dd>
 <dt>23:00–次日01:00</dt>
@@ -153,13 +190,13 @@ button:hover{background:#991b1b}
 <dt>约08:20–10:00</dt>
 <dd>预计08:20到沃尔顿。已确认可在10:00出发前完成新娘化妆和酒店早餐。</dd>
 <dt>10:00</dt>
-<dd>两辆车从沃尔顿出发去吴记家宴。第一辆由新郎开，车上只有新郎和新娘。第二辆由仕崟开，载新娘父母和姐姐。</dd>
+<dd>两辆车从沃尔顿出发去吴记家宴。第一辆由新郎开，车上只有新郎和新娘。第二辆由仕崟开，载新娘父母。</dd>
 <dt>12:00</dt>
 <dd>吴记家宴2楼午宴开席。</dd>
 <dt>午宴后</dt>
 <dd>仍用两辆车回新郎家喝茶。第一辆由代驾开，载新郎、新娘和新娘父母。第二辆由仕崟开，载新郎父母和哥哥。</dd>
 <dt>晚上</dt>
-<dd>新娘父母和姐姐回沃尔顿酒店（将军园店）住宿。</dd>
+<dd>新娘父母回沃尔顿酒店（将军园店）住宿。</dd>
 </dl>
 </section>
 
@@ -167,13 +204,14 @@ button:hover{background:#991b1b}
 <h3 class="subsection-title" id="dec-25" tabindex="-1">1.4 12月25日 · 返程</h3>
 <dl class="time-slots">
 <dt>上午</dt>
-<dd>新娘父母和姐姐在沃尔顿酒店吃早餐。</dd>
+<dd>新娘父母在沃尔顿酒店吃早餐。</dd>
 <dt>早餐后</dt>
-<dd>新娘父母和姐姐乘高铁返回汕尾。高铁票待购买，车次和发车时间购票后补充。</dd>
+<dd>新娘父母乘高铁返回汕尾。高铁票待购买，车次和发车时间购票后补充。</dd>
 </dl>
 </section>
 </div>
-<div class="progress">总进度：<span id="progress">0/131</span></div>
+<div id="wedding-checklist" data-full-view>
+<div class="progress">总进度：<span id="progress">0/128</span></div>
 <div class="ctrl">
 <button onclick="saveData()">保存</button>
 <button onclick="loadData()">读取</button>
@@ -195,11 +233,10 @@ button:hover{background:#991b1b}
 </div>
 
 <div class="section">
-<h3 class="section-title subsection-title" id="red-envelopes" tabindex="-1">2.2 红包类 <span class="progress" data-count="5">0/5</span></h3>
+<h3 class="section-title subsection-title" id="red-envelopes" tabindex="-1">2.2 红包类 <span class="progress" data-count="4">0/4</span></h3>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">仕崟帮忙开车｜备红包和喜烟，23日晚接亲结束后答谢</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">伴郎、伴娘红包</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">帮忙亲友红包｜总管、记账、物资管理员、老家看家人员</div></div>
-<div class="item"><input type="checkbox" class="chk"><div class="item-text">化妆师红包｜现金或搭配喜烟</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">改口敬茶红包｜由父母准备。23日晚进门敬茶时，由在场的父母给新郎和新娘。红包数量和金额由父母确认</div></div>
 </div>
 
@@ -207,7 +244,7 @@ button:hover{background:#991b1b}
 <h3 class="section-title subsection-title" id="ceremony-supplies" tabindex="-1">2.3 仪式用品 <span class="progress" data-count="4">0/4</span></h3>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">敬茶杯2个 + 托盘｜在新郎家一楼堂屋备一套，供23日晚新郎和新娘接亲进门后敬茶</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">胸花：新郎、新娘、双方父母、伴郎伴娘、总管</div></div>
-<div class="item"><input type="checkbox" class="chk"><div class="item-text">喜字｜出嫁房、婚房、吴记一楼门口+二楼入口、老家门头，楼梯口重点贴</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">喜字｜出嫁房、婚房和老家门头简单布置</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">签到本、签到笔｜吴记迎宾台使用</div></div>
 </div>
 
@@ -234,9 +271,9 @@ button:hover{background:#991b1b}
 </div>
 <div class="section">
 <h3 class="section-title subsection-title" id="hotel-room" tabindex="-1">3.1 沃尔顿酒店（将军园店） · 订房与布置 <span class="progress" data-count="14">0/14</span></h3>
-<div class="item"><input type="checkbox" class="chk"><div class="item-text">预订12月22日大床房1间（待预订）。12月23日豪华套房1间（已预订），用于拍摄，由新娘父母入住。24日晚新娘父母和姐姐仍住沃尔顿，25日早上在酒店吃早餐。提前确认房号、入住和退房时间，并核对伴娘及女方家人的住宿安排</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">预订12月22日大床房1间（待预订）。12月23日豪华套房1间（已预订），用于拍摄，由新娘父母入住。24日晚新娘父母仍住沃尔顿，25日早上在酒店吃早餐。提前确认房号、入住和退房时间，并核对伴娘及女方家人的住宿安排</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">确认酒店允许布置范围，优先无痕胶/静电贴，避免扣押金</div></div>
-<div class="item"><input type="checkbox" class="chk"><div class="item-text">确认23日晚接亲的具体房号和门卡交接方式。当晚新娘父母和姐姐在沃尔顿酒店休息，新娘父亲在23:00前回已订的豪华套房闭门休息</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">确认23日晚接亲的具体房号和门卡交接方式。当晚新娘父母在沃尔顿酒店休息，新娘父亲在23:00前回已订的豪华套房闭门休息</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">红色床品：床单、被套、枕套</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">床头双喜、窗贴、门贴喜字（静电贴/无痕胶）</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">气球、拉花、花艺装饰</div></div>
@@ -251,17 +288,15 @@ button:hover{background:#991b1b}
 </div>
 
 <div class="section">
-<h3 class="section-title subsection-title" id="lunch-venue" tabindex="-1">3.2 吴记家宴 · 现场布置 <span class="progress" data-count="23">0/23</span></h3>
-<div class="item"><input type="checkbox" class="chk"><div class="item-text">和吴记家宴确认进场布置时间、可布置区域、撤场时间，提前看场地</div></div>
+<h3 class="section-title subsection-title" id="lunch-venue" tabindex="-1">3.2 吴记家宴 · 现场布置 <span class="progress" data-count="21">0/21</span></h3>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">吴记家宴提供电视，午宴用电视投屏。提前准备投屏内容，到店试播</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">13桌排位：12桌正席 + 1桌备用，确定主桌位置</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">确认备用桌规则：是否上菜、开桌费用，避免额外加价</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">席次规划：主桌、女方送亲桌、亲友桌、朋友桌，女方送亲安排上首</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">二楼入口指示牌，安排人员一楼引导上楼</div></div>
-<div class="item"><input type="checkbox" class="chk"><div class="item-text">楼梯口喜字、扶手红绸/气球</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">老人小孩上楼看护提醒，注意台阶湿滑</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">迎宾指示牌，街上显眼摆放</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">签到台布置：礼簿、笔、喜糖、托盘，放在进门显眼位置</div></div>
-<div class="item"><input type="checkbox" class="chk"><div class="item-text">门口喜字、气球、拱门（可选）、红绸</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">确认每桌喜糖、瓜子花生、烟酒饮料由谁摆放</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">桌卡/席位卡（可选）</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">敬酒小酒杯、托盘，提前向吴记家宴确认是否自备</div></div>
@@ -337,7 +372,7 @@ button:hover{background:#991b1b}
 </div>
 <div class="section">
 <h3 class="section-title subsection-title" id="wedding-cars" tabindex="-1">4.1 婚车 · 车队 <span class="progress" data-count="13">0/13</span></h3>
-<div class="item"><input type="checkbox" class="chk"><div class="item-text"><strong>23日晚接亲车队：一共2台</strong><br>1、第一台：新郎开深圳西站神州租赁的头车，新娘坐后座右侧<br>2、第二台：仕崟开自有比亚迪汉电车跟车<br>新娘父母和姐姐当晚在沃尔顿酒店休息，不随接亲车队返程</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text"><strong>23日晚接亲车队：一共2台</strong><br>1、第一台：新郎开深圳西站神州租赁的头车，新娘坐后座右侧<br>2、第二台：仕崟开自有比亚迪汉电车跟车<br>新娘父母当晚在沃尔顿酒店休息，不随接亲车队返程</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">仕崟23日晚接亲结束后计划住街上的酒店，房间待订。24日上午到新郎家会合，07:30由新郎和仕崟各开一辆车送新娘去化妆</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">车辆装饰：21:00在沃尔顿门口汇合停车后，找新郎拿已买好的喜庆贴纸并确认贴法，两辆车都用无痕胶，约10分钟贴好，保持车牌清晰可见</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">23日晚新郎20:00从新郎家发车，仕崟从赣州发车，两辆车21:00在沃尔顿酒店（将军园店）门口汇合</div></div>
@@ -348,7 +383,7 @@ button:hover{background:#991b1b}
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">23日晚各自出发前，新郎和仕崟带好矿泉水</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">车辆提前清洗；比亚迪汉提前充满电，租车车辆检查油量</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">23日晚新郎20:00出发，按约50分钟车程为21:00汇合预留约10分钟。两人各自查看去程路况，遇雾雨时提前沟通</div></div>
-<div class="item"><input type="checkbox" class="chk"><div class="item-text">24日10:00从沃尔顿去吴记的分车安排：第一辆车仅新郎和新娘，由新郎开。第二辆车由仕崟开，载新娘父母和姐姐</div></div>
+<div class="item"><input type="checkbox" class="chk"><div class="item-text">24日10:00从沃尔顿去吴记的分车安排：第一辆车仅新郎和新娘，由新郎开。第二辆车由仕崟开，载新娘父母</div></div>
 <div class="item"><input type="checkbox" class="chk"><div class="item-text">24日午宴后去新郎家喝茶的分车安排：第一辆联系代驾，载新郎、新娘和新娘父母。第二辆由仕崟开，载新郎父母和哥哥</div></div>
 </div>
 
@@ -383,8 +418,8 @@ button:hover{background:#991b1b}
 <h3 class="section-title subsection-title" id="pending-lodging" tabindex="-1">5.1 订房与住宿</h3>
 <ul class="pending-list">
 <li>预订12月22日沃尔顿酒店（将军园店）大床房1间。</li>
-<li>确认姐姐在沃尔顿的房间，为仕崟预订23日晚街上的酒店。</li>
-<li>核对24日晚新娘父母和姐姐在沃尔顿的房间安排，以及下午喝茶后回酒店的接送。</li>
+<li>为仕崟预订23日晚街上的酒店。</li>
+<li>核对24日晚新娘父母在沃尔顿的房间安排，以及下午喝茶后回酒店的接送。</li>
 </ul>
 </section>
 
@@ -407,7 +442,7 @@ button:hover{background:#991b1b}
 <section class="section">
 <h3 class="section-title subsection-title" id="pending-train" tabindex="-1">5.4 回汕尾高铁</h3>
 <ul class="pending-list">
-<li>购买25日新娘父母和姐姐回汕尾的3张高铁票。</li>
+<li>购买25日新娘父母回汕尾的2张高铁票。</li>
 <li>购票后补充车次、出发站和发车时间，并安排去高铁站的接送。</li>
 </ul>
 </section>
@@ -416,10 +451,13 @@ button:hover{background:#991b1b}
 <h3 class="section-title subsection-title" id="pending-banquet" tabindex="-1">5.5 红包与午宴分工</h3>
 <ul class="pending-list">
 <li>由父母确认给新郎和新娘的改口红包数量和金额。</li>
-<li>和吴记家宴确认备用桌启用规则和费用，确定当天布置、摆台的负责人。</li>
-<li>确认新娘姐姐午宴后是否一起去新郎家喝茶，以及她的接送安排。</li>
+<li>和吴记家宴确认备用桌启用规则和费用，确定当天投屏、摆台的负责人。</li>
 </ul>
 </section>
+
+</div>
+</main>
+<a class="back-to-top" href="#page-top" aria-label="回到顶部" title="回到顶部"><span aria-hidden="true">↑</span></a>
 
 <script>
 const chks = document.querySelectorAll('.chk');
@@ -458,6 +496,15 @@ function loadData(){
   if (savedChecks.length === 132) {
     savedChecks = savedChecks.filter((_, i) => i !== 6);
   }
+  // 131 项的旧版包含化妆师红包。
+  if (savedChecks.length === 131) {
+    savedChecks = savedChecks.filter((_, i) => i !== 9);
+  }
+  // 130 项的旧版包含吴记门口和楼梯的装饰。
+  if (savedChecks.length === 130) {
+    const removedItems = new Set([42, 46]);
+    savedChecks = savedChecks.filter((_, i) => !removedItems.has(i));
+  }
   chks.forEach((c,i)=>c.checked = savedChecks[i]);
   updateProgress();
   alert('读取完成');
@@ -468,6 +515,150 @@ function clearAll(){
   localStorage.removeItem('weddingCheck');
 }
 updateProgress();
+</script>
+<script>
+{
+  const input = document.getElementById('page-search-input');
+  const count = document.getElementById('page-search-count');
+  const previous = document.getElementById('page-search-previous');
+  const next = document.getElementById('page-search-next');
+  const clear = document.getElementById('page-search-clear');
+  const blocks = document.querySelectorAll('#wedding-content :is(h2, h3, p, dt, dd, .item-text, .pending-list li)');
+  const dayButtons = document.querySelectorAll('.day-view button');
+  const days = document.querySelectorAll('.itinerary-day');
+  const fullView = document.querySelectorAll('[data-full-view]');
+
+  let hits = [];
+  let active = -1;
+  let query = '';
+
+  function highlightMatches(block, pattern) {
+    const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, {
+      acceptNode(node) {
+        if (node.nodeType === Node.TEXT_NODE || node.tagName === 'BR') return NodeFilter.FILTER_ACCEPT;
+        return node.classList.contains('progress') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_SKIP;
+      },
+    });
+
+    const spans = [];
+    let text = '';
+    for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const start = text.length;
+        text += node.data;
+        spans.push({ node, start, end: text.length });
+      } else {
+        text += '\n';
+      }
+    }
+
+    // Work from the end so splitting a text node preserves earlier offsets.
+    const matches = Array.from(text.matchAll(pattern));
+    const groups = [];
+    for (const match of matches.reverse()) {
+      const end = match.index + match[0].length;
+      const marks = [];
+      for (const span of spans) {
+        const startInNode = Math.max(match.index, span.start) - span.start;
+        const endInNode = Math.min(end, span.end) - span.start;
+        if (startInNode >= endInNode) continue;
+
+        const part = span.node.splitText(startInNode);
+        part.splitText(endInNode - startInNode);
+        const mark = document.createElement('mark');
+        mark.className = 'search-hit';
+        part.replaceWith(mark);
+        mark.append(part);
+        marks.push(mark);
+      }
+      groups.push(marks);
+    }
+    return groups.reverse();
+  }
+
+  function removeHighlights() {
+    const parents = new Set();
+    for (const marks of hits) {
+      for (const mark of marks) {
+        parents.add(mark.parentNode);
+        mark.replaceWith(mark.firstChild);
+      }
+    }
+    for (const parent of parents) parent.normalize();
+    hits = [];
+    active = -1;
+  }
+
+  function goToHit(index) {
+    if (!hits.length) return;
+    if (active >= 0) {
+      for (const mark of hits[active]) mark.classList.remove('search-hit-current');
+    }
+    active = (index + hits.length) % hits.length;
+    for (const mark of hits[active]) mark.classList.add('search-hit-current');
+    count.value = (active + 1) + '/' + hits.length;
+    hits[active][0].scrollIntoView({ block: 'center', inline: 'nearest' });
+  }
+
+  function refreshSearch(viewChanged = false) {
+    clear.disabled = !input.value;
+    const term = input.value.trim();
+    if (!viewChanged && term === query) return;
+    query = term;
+    removeHighlights();
+
+    if (query) {
+      const literal = query.replace(/[.*+?^{}$()|[\]\\]/g, '\\$&');
+      const pattern = new RegExp(literal, 'giu');
+      for (const block of blocks) {
+        if (!block.closest('[hidden]')) hits.push(...highlightMatches(block, pattern));
+      }
+    }
+
+    previous.disabled = next.disabled = !hits.length;
+    if (hits.length) {
+      goToHit(0);
+    } else {
+      count.value = query ? '无结果' : '';
+    }
+  }
+
+  function clearSearch() {
+    input.value = '';
+    refreshSearch();
+    input.focus({ preventScroll: true });
+  }
+
+  input.addEventListener('input', event => {
+    if (!event.isComposing) refreshSearch();
+  });
+  input.addEventListener('compositionend', () => refreshSearch());
+  input.addEventListener('keydown', event => {
+    if (event.isComposing) return;
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      goToHit(active + (event.shiftKey ? -1 : 1));
+    }
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      clearSearch();
+    }
+  });
+  previous.addEventListener('click', () => goToHit(active - 1));
+  next.addEventListener('click', () => goToHit(active + 1));
+  clear.addEventListener('click', clearSearch);
+
+  for (const button of dayButtons) {
+    button.addEventListener('click', () => {
+      if (button.getAttribute('aria-pressed') === 'true') return;
+      const date = button.dataset.day;
+      for (const option of dayButtons) option.setAttribute('aria-pressed', String(option === button));
+      for (const item of fullView) item.hidden = Boolean(date);
+      for (const day of days) day.hidden = Boolean(date) && day.querySelector('h3').id !== date;
+      refreshSearch(true);
+    });
+  }
+}
 </script>
 </body>
 </html>
